@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -32,16 +33,14 @@ bool promising(queens *q, int i)
 
 void checkQueens(queens *q, int i)
 {
-    int j;
-
     if (promising(q, i)) {
         if (i == q->n) {
-            for (j = 1; j <= q->n; j++) {
+            for (int j = 1; j <= q->n; j++) {
                 printf("%d ", q->cols[j]);
             }
             printf("\n");
         } else {
-            for (j = 1; j <= q->n; j++) {
+            for (int j = 1; j <= q->n; j++) {
                 q->cols[i + 1] = j;
                 checkQueens(q, i + 1);
             }
@@ -57,6 +56,8 @@ int main(int argc, char** argv)
     }
 
     int n = atoi(argv[1]);
+    printf("N is %d\n", n);
+
     queens *q = createQueens(n);
     checkQueens(q, 0);
 
