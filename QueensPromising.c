@@ -1,3 +1,12 @@
+/**
+ *
+ * @Name:N-Queens Promising C
+ * @Author: Max Base
+ * @Date: 2022/12/10
+ * @Repository: https://github.com/BaseMax/NQueensPromisingC
+ *
+ **/
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
