@@ -41,10 +41,6 @@ void queensCheck(queens *q, int i)
 
     if (queensPromising(q, i)) {
         if (i == q->n) {
-            // for (j = 1; j <= q->n; j++) {
-            //     printf("%d ", q->row[j]);
-            // }
-            // printf("\n");
             for (j = 1; j <= q->n; j++) {
                 q->answers[q->answerCount][j - 1] = q->row[j];
             }
@@ -82,6 +78,8 @@ int main(int argc, char** argv)
     queens *q = queensCreate(n);
     queensCheck(q, 0);
 
+    printf("Number of answers: %d\n", q->answerCount);
+    printf("List of answers:\n");
     queensPrint(q);
 
     return 0;
