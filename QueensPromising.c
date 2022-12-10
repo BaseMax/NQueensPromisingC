@@ -13,7 +13,7 @@
 #include <stdbool.h>
 
 typedef struct {
-    int n ;
+    int n;
     int *row;
     int **answers;
     int answerCount;
