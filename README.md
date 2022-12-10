@@ -13,7 +13,7 @@ To compile the program, you can use CMake to generate a Makefile. Then, you can 
 
 To run the program, you can use the following command:
 
-    ./n-queens-promising <n>
+    ./QueensPromising <n>
 
 Where `<n>` is the size of the board. The program will print all solutions to the n-Queens problem.
 
