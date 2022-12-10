@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <string.h>
 
 typedef struct {
     int n;
@@ -21,13 +23,13 @@ typedef struct {
 
 queens *queensCreate(int n)
 {
-    int MAX_SIZE = n * n * n; // Upper bound on number of answers
+    size_t MAX_SIZE = n * n * n * n * n; // Upper bound on number of answers
     queens *q = malloc(sizeof(queens));
     q->n = n;
     q->row = malloc(sizeof(int) * (n + 1));
     q->answers = malloc(sizeof(int *) * MAX_SIZE);
     for (int i = 0; i < MAX_SIZE; i++) {
-        q->answers[i] = malloc(sizeof(int) * n);
+        q->answers[i] = malloc(sizeof(int) * (n + 1));
     }
     q->answerCount = 0;
     return q;
