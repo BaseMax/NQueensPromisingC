@@ -23,15 +23,15 @@ typedef struct {
 
 queens *queensCreate(int n)
 {
-    size_t MAX_SIZE = n * n * n * n * n; // Upper bound on number of answers
+//    size_t MAX_SIZE = n * n * n * n * n; // Upper bound on number of answers
     queens *q = malloc(sizeof(queens));
     q->n = n;
     q->row = malloc(sizeof(int) * (n + 1));
-    q->answers = malloc(sizeof(int *) * MAX_SIZE);
-    for (int i = 0; i < MAX_SIZE; i++) {
-        q->answers[i] = malloc(sizeof(int) * (n + 1));
-    }
-    q->answerCount = 0;
+//    q->answers = malloc(sizeof(int *) * MAX_SIZE);
+//    for (int i = 0; i < MAX_SIZE; i++) {
+//        q->answers[i] = malloc(sizeof(int) * (n + 1));
+//    }
+//    q->answerCount = 0;
     return q;
 }
 
@@ -53,9 +53,11 @@ void queensCheck(queens *q, int i)
     if (queensPromising(q, i)) {
         if (i == q->n) {
             for (j = 1; j <= q->n; j++) {
-                q->answers[q->answerCount][j - 1] = q->row[j];
+//                q->answers[q->answerCount][j - 1] = q->row[j];
+                printf("%d ", q->row[j]);
             }
-            q->answerCount++;
+            printf("\n");
+//            q->answerCount++;
         } else {
             for (j = 1; j <= q->n; j++) {
                 q->row[i + 1] = j;
@@ -89,11 +91,11 @@ int main(int argc, char** argv)
     queens *q = queensCreate(n);
     queensCheck(q, 0);
 
-    printf("Number of answers: %d\n", q->answerCount);
-    if (q->answerCount > 0) {
-        printf("List of answers:\n");
-        queensPrint(q);
-    }
+//    printf("Number of answers: %d\n", q->answerCount);
+//    if (q->answerCount > 0) {
+//        printf("List of answers:\n");
+//        queensPrint(q);
+//    }
 
     return 0;
 }
