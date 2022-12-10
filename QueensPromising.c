@@ -9,7 +9,7 @@ typedef struct {
     int *rows;
 } queens;
 
-queens *createQueens(int n)
+queens *queensCreate(int n)
 {
     queens *q = malloc(sizeof(queens));
     q->n = n;
@@ -18,7 +18,7 @@ queens *createQueens(int n)
     return q;
 }
 
-bool promising(queens *q, int i)
+bool queensPromising(queens *q, int i)
 {
     int k = 1;
 
@@ -31,9 +31,9 @@ bool promising(queens *q, int i)
     return true;
 }
 
-void checkQueens(queens *q, int i)
+void queensCheck(queens *q, int i)
 {
-    if (promising(q, i)) {
+    if (queensPromising(q, i)) {
         if (i == q->n) {
             for (int j = 1; j <= q->n; j++) {
                 printf("%d ", q->cols[j]);
@@ -42,7 +42,7 @@ void checkQueens(queens *q, int i)
         } else {
             for (int j = 1; j <= q->n; j++) {
                 q->cols[i + 1] = j;
-                checkQueens(q, i + 1);
+                queensCheck(q, i + 1);
             }
         }
     }
@@ -58,8 +58,8 @@ int main(int argc, char** argv)
     int n = atoi(argv[1]);
     printf("N is %d\n", n);
 
-    queens *q = createQueens(n);
-    checkQueens(q, 0);
+    queens *q = queensCreate(n);
+    queensCheck(q, 0);
 
     return 0;
 }
