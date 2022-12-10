@@ -7,6 +7,8 @@ typedef struct {
     int n ;
     int *cols;
     int *rows;
+    int **answers;
+    int answerCount;
 } queens;
 
 queens *queensCreate(int n)
@@ -15,6 +17,11 @@ queens *queensCreate(int n)
     q->n = n;
     q->cols = malloc(sizeof(int) * n);
     q->rows = malloc(sizeof(int) * n);
+    q->answers = malloc(sizeof(int *) * n); // Max number of answers
+    for (int i = 0; i < n; i++) {
+        q->answers[i] = malloc(sizeof(int) * n);
+    }
+    q->answerCount = 0;
     return q;
 }
 
@@ -35,16 +42,27 @@ void queensCheck(queens *q, int i)
 {
     if (queensPromising(q, i)) {
         if (i == q->n) {
-            for (int j = 1; j <= q->n; j++) {
-                printf("%d ", q->cols[j]);
+            for (int j = 0; j < q->n; j++) {
+                q->answers[q->answerCount][j] = q->cols[j + 1];
             }
-            printf("\n");
+            q->answerCount++;
         } else {
             for (int j = 1; j <= q->n; j++) {
                 q->cols[i + 1] = j;
                 queensCheck(q, i + 1);
             }
         }
+    }
+}
+
+void queensPrint(queens *q)
+{
+    for (int i = 0; i < q->answerCount; i++) {
+        printf("Answer %d: ", i + 1);
+        for (int j = 0; j < q->n; j++) {
+            printf("%d ", q->answers[i][j]);
+        }
+        printf("\n");
     }
 }
 
@@ -60,6 +78,8 @@ int main(int argc, char** argv)
 
     queens *q = queensCreate(n);
     queensCheck(q, 0);
+
+    queensPrint(q);
 
     return 0;
 }
