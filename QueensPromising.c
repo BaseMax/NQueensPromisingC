@@ -28,16 +28,6 @@ bool promising(queens *q, int i)
         k++;
     }
     return true;
-    // int k = 1;
-    // bool flag = true;
-
-    // while (k < i && flag) {
-    //     if (cols[i] == cols[k] || abs(cols[i] - cols[k]) == abs(i - k)) {
-    //         flag = false;
-    //     }
-    //     k++;
-    // }
-    // return flag;
 }
 
 void checkQueens(queens *q, int i)
